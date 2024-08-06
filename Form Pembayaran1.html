@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Pembayaran</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .header, .footer {
+            background-color: #FFFF00;
+            text-align: center;
+            padding: 10px;
+        }
+        .footer {
+            background-color: #00ff00;
+            color: #000;
+        }
+        form {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+        input[type="text"], input[type="tel"], input[type="number"], textarea {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 15px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 10px 0;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Form Pembayaran TOKO HANDPHONE</h1>
+    </div>
+    <form id="payment-form">
+        <label for="nama">Nama:</label>
+        <input type="text" id="nama" name="nama" required />
+        
+        <label for="nomor_hp">Nomor HP:</label>
+        <input type="tel" id="nomor_hp" name="nomor_hp" required />
+        
+        <label for="alamat">Alamat:</label>
+        <textarea id="alamat" name="alamat" required></textarea>
+        
+        <label for="jenis_hp">Jenis Handphone:</label>
+        <input type="text" id="jenis_hp" name="jenis_hp" readonly value="iPhone 14 Pro" />
+        
+        <label for="jumlah">Jumlah:</label>
+        <input type="number" id="jumlah" name="jumlah" min="1" required />
+        
+        <label for="total_harga">Total Harga:</label>
+        <input type="number" id="total_harga" name="total_harga" readonly />
+        
+        <input type="submit" value="Bayar" />
+    </form>
+
+    <div class="footer">
+        <p>&copy; 2024 TOKO HANDPHONE</p>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const hargaPerUnit = 14999999; // Harga per unit handphone
+
+            const jumlahInput = document.getElementById('jumlah');
+            const totalHargaInput = document.getElementById('total_harga');
+
+            jumlahInput.addEventListener('input', function() {
+                const jumlah = parseInt(jumlahInput.value, 10) || 0;
+                const totalHarga = jumlah * hargaPerUnit;
+                totalHargaInput.value = totalHarga;
+            });
+
+            document.getElementById('payment-form').addEventListener('submit', function(event) {
+                event.preventDefault();
+
+                // Save form data to sessionStorage
+                sessionStorage.setItem('nama', document.getElementById('nama').value);
+                sessionStorage.setItem('nomor_hp', document.getElementById('nomor_hp').value);
+                sessionStorage.setItem('alamat', document.getElementById('alamat').value);
+                sessionStorage.setItem('jenis_hp', document.getElementById('jenis_hp').value);
+                sessionStorage.setItem('jumlah', document.getElementById('jumlah').value);
+                sessionStorage.setItem('total_harga', document.getElementById('total_harga').value);
+
+                // Redirect to invoice page
+                window.location.href = 'invoice.html';
+            });
+        });
+    </script>
+</body>
+</html>

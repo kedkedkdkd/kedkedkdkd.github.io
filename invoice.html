@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoice</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .invoice-container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        p {
+            font-size: 16px;
+            margin: 10px 0;
+            color: #555;
+        }
+        strong {
+            color: #333;
+        }
+        .footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #00ff00;
+            color: #000;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="invoice-container">
+        <h1>Invoice</h1>
+        <p><strong>Nama:</strong> <span id="invoice-nama"></span></p>
+        <p><strong>Nomor HP:</strong> <span id="invoice-nomor_hp"></span></p>
+        <p><strong>Alamat:</strong> <span id="invoice-alamat"></span></p>
+        <p><strong>Jenis Handphone:</strong> <span id="invoice-jenis_hp"></span></p>
+        <p><strong>Jumlah:</strong> <span id="invoice-jumlah"></span></p>
+        <p><strong>Total Harga:</strong> <span id="invoice-total_harga"></span></p>
+    </div>
+
+    <div class="footer">
+        <p>&copy; 2024 TOKO HANDPHONE</p>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Retrieve data from sessionStorage
+            document.getElementById('invoice-nama').textContent = sessionStorage.getItem('nama');
+            document.getElementById('invoice-nomor_hp').textContent = sessionStorage.getItem('nomor_hp');
+            document.getElementById('invoice-alamat').textContent = sessionStorage.getItem('alamat');
+            document.getElementById('invoice-jenis_hp').textContent = sessionStorage.getItem('jenis_hp');
+            document.getElementById('invoice-jumlah').textContent = sessionStorage.getItem('jumlah');
+            document.getElementById('invoice-total_harga').textContent = sessionStorage.getItem('total_harga');
+        });
+    </script>
+</body>
+</html>
